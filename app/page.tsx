@@ -32,15 +32,15 @@ export default function Home() {
     let smoother: ScrollSmootherType | null = null;
 
     const ctx = gsap.context(() => {
-      // Section fade-in animations
       gsap.utils.toArray("section").forEach((section) => {
-        gsap.from(section, {
+        gsap.from(section as HTMLElement, {
+          // <-- cast here
           opacity: 0,
           y: 40,
           duration: 0.9,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: section,
+            trigger: section as HTMLElement, // also cast trigger
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
@@ -48,13 +48,12 @@ export default function Home() {
         });
       });
 
-      // Parallax animations for elements with data-parallax
       gsap.utils.toArray("[data-parallax]").forEach((el) => {
-        gsap.to(el, {
+        gsap.to(el as HTMLElement, {
           yPercent: -20,
           ease: "none",
           scrollTrigger: {
-            trigger: el,
+            trigger: el as HTMLElement,
             start: "top bottom",
             end: "bottom top",
             scrub: 0.7,
@@ -66,9 +65,7 @@ export default function Home() {
     // Dynamically import ScrollSmoother for smoother scrolling
     (async () => {
       try {
-        const { default: ScrollSmoother } = await import(
-          "gsap/ScrollSmoother"
-        );
+        const { default: ScrollSmoother } = await import("gsap/ScrollSmoother");
         gsap.registerPlugin(ScrollSmoother);
 
         smoother = ScrollSmoother.create({
@@ -102,10 +99,7 @@ export default function Home() {
       <Sidebar />
 
       {/* ScrollSmoother wrapper/content */}
-      <div
-        id="smooth-wrapper"
-        style={{ minHeight: "100vh", overflow: "auto" }}
-      >
+      <div id="smooth-wrapper" style={{ minHeight: "100vh", overflow: "auto" }}>
         <main
           id="smooth-content"
           className="max-w-[calc(100%-320px)] ml-auto min-h-screen w-full"
@@ -123,9 +117,7 @@ export default function Home() {
 
       {/* Dark/Light Theme Toggle */}
       <button
-        onClick={() =>
-          setTheme(theme === "light" ? "dark" : "light")
-        }
+        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         className="fixed top-1/2 -translate-y-1/2 right-0 z-50 backdrop-blur-xs p-2.5 py-2 rounded-l-full transition-all duration-500 border-r-0 font-[var(--font-inter)] border border-black/30 dark:border-white/30 text-sm font-medium text-[var(--color-heading)] cursor-pointer -mr-[80px] dark:-mr-[83px] hover:mr-0"
       >
         {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
