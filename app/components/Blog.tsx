@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 
@@ -13,7 +13,8 @@ type Article = {
   slug: string;
 };
 
-const BLOG_POSTS: Article[] = [
+// Optional: hardcoded fallback posts
+const FALLBACK_BLOG_POSTS: Article[] = [
   {
     id: 1,
     title:
@@ -46,7 +47,9 @@ const BLOG_POSTS: Article[] = [
 
 export default function Blog() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [posts, setPosts] = useState<Article[]>(FALLBACK_BLOG_POSTS);
 
+  // GSAP Animations
   useEffect(() => {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
@@ -59,6 +62,23 @@ export default function Blog() {
       });
     }, sectionRef);
     return () => ctx.revert();
+  }, []);
+
+  // Optional: fetch posts from an API safely
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch("/api/blog"); // replace with your API endpoint
+        if (!res.ok) throw new Error(res.status.toString());
+        const data: Article[] = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.warn("Failed to fetch blog posts, using fallback.", err);
+        setPosts(FALLBACK_BLOG_POSTS);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   return (
@@ -81,7 +101,7 @@ export default function Blog() {
 
         {/* Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {BLOG_POSTS.map((post) => (
+          {posts.map((post) => (
             <article
               key={post.id}
               className="blog-card border border-[var(--color-border)] rounded-2xl bg-[var(--color-surface)] p-6 hover:shadow-lg transition-shadow duration-300"

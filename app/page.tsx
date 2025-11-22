@@ -62,7 +62,9 @@ export default function Home() {
 
     (async () => {
       try {
-        const { default: ScrollSmoother } = await import("gsap/ScrollSmoother");
+        const { default: ScrollSmoother } = await import(
+          "gsap/ScrollSmoother"
+        );
         gsap.registerPlugin(ScrollSmoother);
 
         smoother = ScrollSmoother.create({

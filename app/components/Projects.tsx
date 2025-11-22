@@ -1,4 +1,3 @@
-// components/Projects.tsx
 "use client";
 
 import Image from "next/image";
@@ -18,6 +17,7 @@ type Project = {
   repo?: string;
 };
 
+// Example projects (replace with real data or fetch safely in client)
 const projects: Project[] = [
   {
     id: "p1",
@@ -61,10 +61,10 @@ const projects: Project[] = [
 
 export default function Projects() {
   const rootRef = useRef<HTMLElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState<Project | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
+  // GSAP animations for heading and cards
   useEffect(() => {
     if (!rootRef.current) return;
     const ctx = gsap.context(() => {
@@ -80,35 +80,34 @@ export default function Projects() {
     return () => ctx.revert();
   }, []);
 
+  // Reset carousel index whenever modal opens
   useEffect(() => {
-    // reset carousel when modal changes
     setCarouselIndex(0);
   }, [active]);
 
   return (
     <section
       ref={rootRef}
-      className="py-20 px-6 lg:px-12"
       id="projects"
       aria-labelledby="projects-heading"
+      className="py-20 px-6 lg:px-12"
     >
       <div className="max-w-6xl mx-auto">
+        {/* Heading */}
         <div className="flex items-center justify-between mb-8">
           <h2
             id="projects-heading"
             className="proj-heading text-2xl font-[var(--font-poppins)] text-[var(--color-heading)]"
           >
-            Selected projects
+            Selected Projects
           </h2>
           <p className="text-sm text-[var(--color-muted)]">
             Featured work — case studies & live demos.
           </p>
         </div>
 
-        <div
-          ref={cardsRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        {/* Project grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p) => (
             <article
               key={p.id}
@@ -123,7 +122,6 @@ export default function Projects() {
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-
               <div className="p-4">
                 <h3 className="text-lg font-[var(--font-poppins)] text-[var(--color-heading)]">
                   {p.title}
@@ -131,7 +129,6 @@ export default function Projects() {
                 <p className="mt-2 text-sm text-[var(--color-text)]">
                   {p.short}
                 </p>
-
                 <div className="mt-3 flex items-center justify-between gap-3">
                   <div className="flex flex-wrap gap-2">
                     {p.tech.slice(0, 3).map((t) => (
@@ -143,7 +140,6 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-
                   <div className="flex items-center gap-2">
                     {p.live && (
                       <a
@@ -156,7 +152,6 @@ export default function Projects() {
                         <FaExternalLinkAlt />
                       </a>
                     )}
-
                     {p.repo && (
                       <a
                         href={p.repo}
@@ -168,7 +163,6 @@ export default function Projects() {
                         <FaGithub />
                       </a>
                     )}
-
                     <button
                       onClick={() => setActive(p)}
                       className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded bg-transparent border border-[var(--color-border)] text-sm text-[var(--color-text)] hover:bg-slate-50 dark:hover:bg-slate-800/60"
@@ -192,13 +186,14 @@ export default function Projects() {
           aria-label={`${active.title} case study`}
           className="fixed inset-0 z-50 flex items-center justify-center p-6"
         >
-          {/* backdrop */}
+          {/* Backdrop */}
           <div
             onClick={() => setActive(null)}
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           />
 
           <div className="relative z-10 max-w-4xl w-full rounded-2xl overflow-hidden bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl">
+            {/* Modal header */}
             <div className="flex items-start justify-between p-4 border-b border-[var(--color-border)]">
               <div>
                 <h3 className="text-lg font-[var(--font-poppins)] text-[var(--color-heading)]">
@@ -230,7 +225,6 @@ export default function Projects() {
                     Repo <FaGithub />
                   </a>
                 )}
-
                 <button
                   onClick={() => setActive(null)}
                   aria-label="Close case study"
@@ -241,6 +235,7 @@ export default function Projects() {
               </div>
             </div>
 
+            {/* Modal content */}
             <div className="p-6 grid gap-6 lg:grid-cols-2">
               {/* Left: gallery */}
               <div>
@@ -254,7 +249,7 @@ export default function Projects() {
                   />
                 </div>
 
-                {/* carousel controls */}
+                {/* Carousel controls */}
                 {active.screenshots && active.screenshots.length > 1 && (
                   <div className="mt-3 flex items-center gap-2">
                     <button
@@ -297,9 +292,7 @@ export default function Projects() {
                   My role
                 </h4>
                 <p className="mt-2 text-sm text-[var(--color-text)]">
-                  {" "}
-                  {active.role} — I led frontend architecture, componentization,
-                  and performance optimizations.
+                  {active.role}
                 </p>
 
                 <h4 className="mt-4 text-sm font-medium text-[var(--color-heading)]">
@@ -324,11 +317,9 @@ export default function Projects() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded bg-[var(--color-primary)] text-white font-medium"
                     >
-                      View live
-                      <FaExternalLinkAlt />
+                      View live <FaExternalLinkAlt />
                     </a>
                   )}
-
                   {active.repo && (
                     <a
                       href={active.repo}
@@ -336,8 +327,7 @@ export default function Projects() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded border border-[var(--color-border)] text-sm"
                     >
-                      View repo
-                      <FaGithub />
+                      View repo <FaGithub />
                     </a>
                   )}
                 </div>
