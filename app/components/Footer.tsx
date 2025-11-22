@@ -1,41 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaGithubAlt, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<
-    null | "idle" | "sending" | "success" | "error"
-  >(null);
-
-  async function handleSubscribe(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      setStatus("error");
-      return;
-    }
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.ok) {
-        setStatus("success");
-        setEmail("");
-      } else {
-        setStatus("error");
-        console.error("Subscribe error:", data);
-      }
-    } catch (err) {
-      setStatus("error");
-      console.error(err);
-    }
-  }
 
   return (
     <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -140,7 +108,6 @@ export default function Footer() {
           </p>
 
           <form
-            onSubmit={handleSubscribe}
             className="mt-4 flex gap-2"
             aria-label="Subscribe form"
           >
@@ -150,8 +117,6 @@ export default function Footer() {
             <input
               id="footer-email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               placeholder="you@domain.com"
               className="flex-1 px-3 py-2 rounded-md border border-[var(--color-border)] bg-transparent text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
               required
