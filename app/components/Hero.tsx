@@ -9,9 +9,7 @@ import {
   FaFacebookF,
   FaGithub,
   FaInstagram,
-  FaLinkedin,
   FaLinkedinIn,
-  FaTwitter,
 } from "react-icons/fa";
 import gsap from "gsap";
 import TypingText from "./TypingText";

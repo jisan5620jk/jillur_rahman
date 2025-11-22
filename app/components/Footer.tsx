@@ -129,18 +129,6 @@ export default function Footer() {
               Subscribe
             </button>
           </form>
-
-          <div className="mt-3 text-xs">
-            {status === "success" && (
-              <span className="text-green-600">Thanks — check your inbox.</span>
-            )}
-            {status === "error" && (
-              <span className="text-red-500">
-                Something went wrong — try again.
-              </span>
-            )}
-          </div>
-
           <div className="mt-6 flex items-center gap-3">
             <div className="text-xs text-[var(--color-muted)]">
               © {new Date().getFullYear()} Jillur Rahman
