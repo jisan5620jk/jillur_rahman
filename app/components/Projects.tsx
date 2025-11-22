@@ -42,7 +42,7 @@ const projects: Project[] = [
     tech: ["Next.js", "Node", "Postgres", "Recharts"],
     img: "/terralava.png",
     screenshots: ["/projects/atlas-1.jpg", "/projects/atlas-2.jpg"],
-    live: "https://atlas.example",
+    live: "https://atlas.com",
     repo: "https://github.com/your-username/atlas-analytics",
   },
   {
