@@ -118,12 +118,12 @@ export default function Home() {
         {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
       </button>
 
-      <a
-        href="https://wa.me/8801773127733?text=Hello%20Jillur!"
+     <a
+        href="https://wa.me/8801773127733?text=Hello%20Jillur!%20I%20just%20viewed%20your%20portfolio%20and%20was%20really%20impressed%20by%20your%20creative%20designs.%20I%20would%20love%20to%20connect%20with%20you%20and%20talk%20about%20a%20potential%20collaboration."
         target="_blank"
         rel="noopener noreferrer"
         title="Click to send a WhatsApp message"
-        className="fixed right-8 bottom-8 z-50 backdrop-blur-xs w-[50px] h-[50px] text-3xl rounded-full flex justify-center items-center border text-[#25d366] transition-all duration-500 hover:text-[var(--color-primary)] border-black/30 dark:border-white/30"
+        className="fixed right-8 bottom-8 z-50 backdrop-blur-xs size-[50px] text-3xl rounded-full flex justify-center items-center border text-[#25d366] transition-all duration-500 hover:text-[var(--color-primary)] border-black/30 dark:border-white/30"
       >
         <FaWhatsapp />
       </a>
