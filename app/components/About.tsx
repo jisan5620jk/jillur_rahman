@@ -45,7 +45,7 @@ export default function About() {
       id="about"
       aria-labelledby="about-heading"
     >
-      <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-12 items-start">
+      <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-12 items-center">
         {/* Left: text */}
         <div ref={leftRef} className="lg:col-span-7">
           <div className="flex items-center gap-3">
