@@ -115,7 +115,7 @@ export default function Testimonials({
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
-  // ✅ Equal height logic
+  // Equal height logic
   useEffect(() => {
     const syncCardHeights = () => {
       const cards = document.querySelectorAll<HTMLElement>(".test-card");
@@ -155,7 +155,7 @@ export default function Testimonials({
             What people say
           </h2>
 
-          {/* simple navigation */}
+          {/* Navigation buttons */}
           <div className="flex items-center gap-3">
             <button
               ref={prevRef}
@@ -183,13 +183,6 @@ export default function Testimonials({
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-          onBeforeInit={(swiper) => {
-            if (typeof swiper.params.navigation !== "boolean") {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-            }
-          }}
           pagination={{
             clickable: true,
             type: "bullets",
@@ -198,6 +191,21 @@ export default function Testimonials({
           autoplay={{ delay: 6000, disableOnInteraction: true }}
           keyboard={{ enabled: true }}
           a11y={{ enabled: true }}
+          onBeforeInit={(swiper) => {
+            if (
+              prevRef.current &&
+              nextRef.current &&
+              swiper.params.navigation
+            ) {
+              // Type-safe assignment
+              (swiper.params.navigation as any).prevEl = prevRef.current;
+              (swiper.params.navigation as any).nextEl = nextRef.current;
+            }
+          }}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
         >
           {data.map((t) => (
             <SwiperSlide key={t.id}>
