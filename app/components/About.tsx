@@ -117,7 +117,7 @@ export default function About() {
                   Currently
                 </div>
                 <div className="text-[var(--color-muted)]">
-                  Shopify Developer (remote)
+                  Shopify Developer (Remote)
                 </div>
               </div>
             </li>
