@@ -14,11 +14,13 @@ import Sidebar from "./components/Sidebar";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaWhatsapp } from "react-icons/fa6";
-// ScrollSmoother is dynamically imported below (so the app can run even if you don't have it)
+
+// TypeScript type for ScrollSmoother
+import type { ScrollSmoother as ScrollSmootherType } from "gsap/ScrollSmoother";
 
 export default function Home() {
-  const [theme, setTheme] = useState("light");
-  const smootherRef = useRef(null);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const smootherRef = useRef<ScrollSmootherType | null>(null);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -27,9 +29,10 @@ export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let smoother = null;
-    let ctx = gsap.context(() => {
-      // common ScrollTrigger-based section fade-in
+    let smoother: ScrollSmootherType | null = null;
+
+    const ctx = gsap.context(() => {
+      // Section fade-in animations
       gsap.utils.toArray("section").forEach((section) => {
         gsap.from(section, {
           opacity: 0,
@@ -45,7 +48,7 @@ export default function Home() {
         });
       });
 
-      // parallax for elements that have data-parallax (e.g. backgrounds or images)
+      // Parallax animations for elements with data-parallax
       gsap.utils.toArray("[data-parallax]").forEach((el) => {
         gsap.to(el, {
           yPercent: -20,
@@ -60,23 +63,25 @@ export default function Home() {
       });
     });
 
-    // Try to enable ScrollSmoother (dynamic import)
+    // Dynamically import ScrollSmoother for smoother scrolling
     (async () => {
       try {
-        const { default: ScrollSmoother } = await import("gsap/ScrollSmoother");
+        const { default: ScrollSmoother } = await import(
+          "gsap/ScrollSmoother"
+        );
         gsap.registerPlugin(ScrollSmoother);
-        // create smoother: wrapper and content IDs must match markup below
+
         smoother = ScrollSmoother.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
           smooth: 1.2,
-          effects: true, // enables data-speed / data-lag attributes if used
+          effects: true, // enables data-speed / data-lag attributes
           normalizeScroll: true,
         });
+
         smootherRef.current = smoother;
       } catch (err) {
-        // If ScrollSmoother isn't available, fall back to native smooth scrolling
-        // This keeps smooth behavior and allows ScrollTrigger animations to work.
+        // Fallback to native smooth scrolling if ScrollSmoother fails
         document.documentElement.style.scrollBehavior = "smooth";
         console.warn(
           "ScrollSmoother not available — using CSS smooth scroll fallback."
@@ -85,7 +90,7 @@ export default function Home() {
     })();
 
     return () => {
-      // cleanup
+      // Cleanup
       if (smoother) smoother.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
       ctx.revert();
@@ -96,9 +101,11 @@ export default function Home() {
     <div className="h-full bg-[var(--color-bg)] font-sans relative">
       <Sidebar />
 
-      {/* ScrollSmoother wrapper/content for smoother scrolling if available.
-          If ScrollSmoother isn't available we still render the same DOM and use CSS fallback. */}
-      <div id="smooth-wrapper" style={{ minHeight: "100vh", overflow: "auto" }}>
+      {/* ScrollSmoother wrapper/content */}
+      <div
+        id="smooth-wrapper"
+        style={{ minHeight: "100vh", overflow: "auto" }}
+      >
         <main
           id="smooth-content"
           className="max-w-[calc(100%-320px)] ml-auto min-h-screen w-full"
@@ -114,21 +121,23 @@ export default function Home() {
         </main>
       </div>
 
-      {/* Dark Light Toggle */}
+      {/* Dark/Light Theme Toggle */}
       <button
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        onClick={() =>
+          setTheme(theme === "light" ? "dark" : "light")
+        }
         className="fixed top-1/2 -translate-y-1/2 right-0 z-50 backdrop-blur-xs p-2.5 py-2 rounded-l-full transition-all duration-500 border-r-0 font-[var(--font-inter)] border border-black/30 dark:border-white/30 text-sm font-medium text-[var(--color-heading)] cursor-pointer -mr-[80px] dark:-mr-[83px] hover:mr-0"
       >
         {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
       </button>
 
-      {/* What's App Contact */}
+      {/* WhatsApp Contact */}
       <a
         href="https://wa.me/8801773127733?text=Hello%20Jillur!%20I%20just%20viewed%20your%20portfolio%20and%20was%20really%20impressed%20by%20your%20creative%20designs.%20I%20would%20love%20to%20connect%20with%20you%20and%20talk%20about%20a%20potential%20collaboration."
         target="_blank"
         rel="noopener noreferrer"
         title="Click to send a WhatsApp message"
-        className="fixed right-8 bottom-8 z-50 backdrop-blur-xs size-[50px] text-3xl rounded-full flex justify-center items-center border text-[#25d366] transition-all duration-500 hover:text-[var(--color-primary)] border-black/30 dark:border-white/30"
+        className="fixed right-8 bottom-8 z-50 backdrop-blur-xs w-[50px] h-[50px] text-3xl rounded-full flex justify-center items-center border text-[#25d366] transition-all duration-500 hover:text-[var(--color-primary)] border-black/30 dark:border-white/30"
       >
         <FaWhatsapp />
       </a>
