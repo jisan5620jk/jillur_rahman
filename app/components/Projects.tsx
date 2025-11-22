@@ -31,7 +31,7 @@ const projects: Project[] = [
       "/projects/velocity-2.jpg",
       "/projects/velocity-3.jpg",
     ],
-    live: "https://velocity.example",
+    live: "https://velocity.com",
     repo: "https://github.com/your-username/velocity-ui",
   },
   {
