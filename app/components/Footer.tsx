@@ -1,10 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { FaFacebookF, FaGithubAlt, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaGithubAlt,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 export default function Footer() {
-
   return (
     <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div className="max-w-6xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3 items-start">
@@ -107,10 +111,7 @@ export default function Footer() {
             Get occasional updates about projects and writing.
           </p>
 
-          <form
-            className="mt-4 flex gap-2"
-            aria-label="Subscribe form"
-          >
+          <form className="mt-4 flex gap-2" aria-label="Subscribe form">
             <label className="sr-only" htmlFor="footer-email">
               Email
             </label>
@@ -124,9 +125,8 @@ export default function Footer() {
             <button
               type="submit"
               className="inline-flex items-center px-4 py-2 rounded-md bg-[var(--color-primary)] text-white font-medium"
-              disabled={status === "sending"}
             >
-              {status === "sending" ? "Sending…" : "Subscribe"}
+              Subscribe
             </button>
           </form>
 
