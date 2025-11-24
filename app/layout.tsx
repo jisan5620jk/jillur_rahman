@@ -24,8 +24,9 @@ const firacode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Personal portfolio — web developer",
+  title: "Jillur Rahman — Web Developer Portfolio",
+  description:
+    "Personal portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects",
 };
 
 export default function RootLayout({
