@@ -102,7 +102,7 @@ const SAMPLE: Testimonial[] = [
     quote:
       "Alex delivered production-ready code faster than any freelancer we've worked with. Excellent communication and results.",
     name: "Marcus Lee",
-    role: "COO",
+    role: "CEO",
     company: "Nimbus Tech",
   },
 ];
