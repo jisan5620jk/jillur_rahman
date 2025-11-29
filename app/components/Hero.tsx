@@ -65,30 +65,28 @@ export default function Hero() {
       id="home"
       aria-label="Hero"
     >
-      <div className="max-w-6xl mx-auto grid gap-6 2xl:gap-10 lg:grid-cols-12 items-center">
+      <div className="max-w-[1200px] mx-auto grid gap-6 2xl:gap-10 lg:grid-cols-12 items-center">
         {/* Left / Content */}
         <div className="lg:col-span-7">
           <p className="hero-badge inline-flex items-center gap-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 text-sm font-medium text-[var(--color-heading)]">
             <span className="h-2 w-2 rounded-full bg-[var(--color-primary)] inline-block" />
-            Available for freelance & contract
+            Available for Frontend Roles & Shopify Projects
           </p>
 
-          <h1 className="hero-title mt-6 text-4xl sm:text-5xl lg:text-6xl font-[var(--font-poppins)] leading-tight tracking-tight text-[var(--color-heading)]">
+          <h1 className="hero-title mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-[56px] font-[var(--font-poppins)] leading-tight tracking-tight text-[var(--color-heading)]">
             Hi — I’m{" "}
-            <span className="text-[var(--color-primary)]">Jillur Rahman</span>,
-            <br />a{" "}
-            <TypingText
-              words={["Front-End", "ReactJS", "Next.js", "Shopify"]}
-              className="text-[var(--color-primary)]"
-            />{" "}
-            Developer
-            <br /> focused on performance, UX, and conversions.
+            <span className="text-[var(--color-primary)] font-medium">
+              Jillur Rahman
+            </span>
+            , a front-end developer building fast, conversion-focused Shopify
+            & Next.js storefronts
           </h1>
 
-          <p className="hero-desc mt-6 text-lg max-w-2xl font- text-[var(--color-text)] text-[var(--color-text)]">
-            I build fast, accessible web apps with a pragmatic approach to
-            design and Developering. I enjoy crafting interfaces that feel
-            native, perform across devices, and scale reliably.
+          <p className="hero-desc mt-6 text-lg max-w-2xl text-[var(--color-text)]">
+            I bridge the gap between design and development for agencies,
+            brands, and product teams. Using React, Next.js, GSAP, and Shopify,
+            I build accessible, app-like experiences that look premium and
+            perform flawlessly across all devices.
           </p>
 
           <div className="hero-ctas mt-8 flex flex-wrap gap-3 items-center">
@@ -103,10 +101,9 @@ export default function Hero() {
               onClick={handleContact}
               className="inline-flex items-center justify-center rounded-lg px-4 py-3 bg-transparent border border-[var(--color-border)] text-sm font-medium text-[var(--color-text)] hover:bg-slate-50 dark:hover:bg-slate-800/60 focus:outline-none"
             >
-              Contact me
+              Let’s work together
             </button>
           </div>
-
           {/* Tech badges */}
           <div className="hero-tech mt-8 flex flex-wrap items-center gap-3">
             {[
