@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Jillur Rahman",
   },
   description:
-    "Personal portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects.",
+    "Portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects with Next.js, Shopify themes, GSAP, and SCSS.",
   keywords: [
     "Jillur Rahman",
     "Frontend Developer",
@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     "SCSS",
     "Next.js",
     "Portfolio",
+    "Web Developer Bangladesh",
   ],
   authors: [{ name: "Jillur Rahman", url: "https://jillur.vercel.app" }],
   creator: "Jillur Rahman",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Jillur Rahman — Web Developer Portfolio",
     description:
-      "Frontend Developer specializing in Shopify themes, GSAP, SCSS, and Next.js.",
+      "Frontend Developer specializing in Shopify themes, GSAP animations, SCSS architecture, and Next.js performance optimization.",
     url: "https://jillur.vercel.app",
     siteName: "Jillur Rahman Portfolio",
     images: [
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jillur Rahman — Web Developer Portfolio",
     description:
-      "Personal portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects.",
+      "Clean, scalable web development projects by Jillur Rahman — Shopify, GSAP, SCSS, Next.js.",
     images: ["https://jillur.vercel.app/og-image.png"],
     creator: "@your_twitter_handle", // 👉 নিজের Twitter handle দাও
   },
@@ -94,11 +95,11 @@ export default function RootLayout({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "url": "https://jillur.vercel.app",
-            "name": "Jillur Rahman Portfolio",
-            "potentialAction": {
+            url: "https://jillur.vercel.app",
+            name: "Jillur Rahman Portfolio",
+            potentialAction: {
               "@type": "SearchAction",
-              "target": "https://jillur.vercel.app/search?q={search_term_string}",
+              target: "https://jillur.vercel.app/search?q={search_term_string}",
               "query-input": "required name=search_term_string",
             },
           })}
@@ -108,11 +109,11 @@ export default function RootLayout({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            "name": "Jillur Rahman",
-            "url": "https://jillur.vercel.app",
-            "jobTitle": "Frontend Developer",
-            "knowsAbout": ["Shopify themes", "GSAP", "SCSS", "Next.js"],
-            "sameAs": [
+            name: "Jillur Rahman",
+            url: "https://jillur.vercel.app",
+            jobTitle: "Frontend Developer",
+            knowsAbout: ["Shopify themes", "GSAP", "SCSS", "Next.js"],
+            sameAs: [
               "https://github.com/jisan5620jk",
               "https://linkedin.com/in/তোমার-প্রোফাইল",
             ],

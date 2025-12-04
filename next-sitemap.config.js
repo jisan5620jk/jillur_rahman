@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: 'https://jillur.vercel.app',
+  siteUrl: "https://jillur.vercel.app",
   generateRobotsTxt: true,
   sitemapSize: 5000,
-}
+};
