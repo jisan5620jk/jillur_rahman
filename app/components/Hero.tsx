@@ -70,7 +70,7 @@ export default function Hero() {
         <div className="lg:col-span-7">
           <p className="hero-badge inline-flex items-center gap-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 text-sm font-medium text-[var(--color-heading)]">
             <span className="h-2 w-2 rounded-full bg-[var(--color-primary)] inline-block" />
-            Available for Frontend Roles & Shopify Projects
+            Available for Frontend Roles & Projects
           </p>
 
           <h1 className="hero-title mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-[56px] font-[var(--font-poppins)] leading-tight tracking-tight text-[var(--color-heading)]">

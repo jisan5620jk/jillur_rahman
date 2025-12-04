@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Inter, Fira_Code } from "next/font/google";
+import Head from "next/head";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -39,6 +40,12 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} ${inter.variable} ${firacode.variable}`}
     >
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="KBTjuj_LfHQjOibxyPcm_ZJbKH0NHGDEdUL3fRW4-0o"
+        />
+      </Head>
       <body className="antialiased">{children}</body>
     </html>
   );
