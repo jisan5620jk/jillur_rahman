@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins, Inter, Fira_Code } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 
+// Google Fonts
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
@@ -24,29 +24,101 @@ const firacode = Fira_Code({
   display: "swap",
 });
 
+// ✅ Metadata config (SEO + Verification + Social)
 export const metadata: Metadata = {
-  title: "Jillur Rahman — Web Developer Portfolio",
+  title: {
+    default: "Jillur Rahman — Web Developer Portfolio",
+    template: "%s | Jillur Rahman",
+  },
   description:
-    "Personal portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects",
+    "Personal portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects.",
+  keywords: [
+    "Jillur Rahman",
+    "Frontend Developer",
+    "Shopify themes",
+    "GSAP",
+    "SCSS",
+    "Next.js",
+    "Portfolio",
+  ],
+  authors: [{ name: "Jillur Rahman", url: "https://jillur.vercel.app" }],
+  creator: "Jillur Rahman",
+  publisher: "Jillur Rahman",
+  metadataBase: new URL("https://jillur.vercel.app"),
+  alternates: {
+    canonical: "https://jillur.vercel.app",
+  },
+  openGraph: {
+    title: "Jillur Rahman — Web Developer Portfolio",
+    description:
+      "Frontend Developer specializing in Shopify themes, GSAP, SCSS, and Next.js.",
+    url: "https://jillur.vercel.app",
+    siteName: "Jillur Rahman Portfolio",
+    images: [
+      {
+        url: "https://jillur.vercel.app/og-image.png", // 👉 /public/og-image.png বানাও
+        width: 1200,
+        height: 630,
+        alt: "Jillur Rahman Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jillur Rahman — Web Developer Portfolio",
+    description:
+      "Personal portfolio of Jillur Rahman — showcasing clean, scalable, and user‑friendly web development projects.",
+    images: ["https://jillur.vercel.app/og-image.png"],
+    creator: "@your_twitter_handle", // 👉 নিজের Twitter handle দাও
+  },
+  verification: {
+    google: "KBTjuj_LfHQjOibxyPcm_ZJbKH0NHGDEdUL3fRW4-0o", // 👉 তোমার Google verification code
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
       className={`${poppins.variable} ${inter.variable} ${firacode.variable}`}
     >
-      <Head>
-        <meta
-          name="google-site-verification"
-          content="KBTjuj_LfHQjOibxyPcm_ZJbKH0NHGDEdUL3fRW4-0o"
-        />
-      </Head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+
+        {/* ✅ Structured Data (Schema.org) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://jillur.vercel.app",
+            "name": "Jillur Rahman Portfolio",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://jillur.vercel.app/search?q={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Jillur Rahman",
+            "url": "https://jillur.vercel.app",
+            "jobTitle": "Frontend Developer",
+            "knowsAbout": ["Shopify themes", "GSAP", "SCSS", "Next.js"],
+            "sameAs": [
+              "https://github.com/jisan5620jk",
+              "https://linkedin.com/in/তোমার-প্রোফাইল",
+            ],
+          })}
+        </script>
+      </body>
     </html>
   );
 }
